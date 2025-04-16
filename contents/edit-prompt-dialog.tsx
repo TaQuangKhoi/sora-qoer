@@ -2,6 +2,8 @@ import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo"
 
 import { querySelector } from "@plasmohq/selector"
 
+import { addToQueue } from "~utils"
+
 export const config: PlasmoCSConfig = {
   matches: ["https://sora.com/*"]
 }
@@ -12,17 +14,13 @@ export const config: PlasmoCSConfig = {
 // }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = async () => ({
-  element: document.querySelector('div[role="dialog"].dialog-content button:last-of-type'),
+  element: document.querySelector(
+    'div[role="dialog"].dialog-content button:last-of-type'
+  ),
   insertPosition: "beforebegin"
 })
 
-function addToQueue() {
-  console.log("addToQueue")
-}
-
 export default function QueuePrompt() {
-
-
   return (
     <button
       // style={{
