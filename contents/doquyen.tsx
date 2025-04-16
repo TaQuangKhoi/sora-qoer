@@ -9,6 +9,44 @@ export const getOverlayAnchor: PlasmoGetOverlayAnchor = async () => {
   return document.querySelector("h2")
 }
 
+async function generateSoraImage() {
+  const url = "https://sora.com/backend/video_gen"
+
+  const payload = {
+    type: "image_gen",
+    operation: "simple_compose",
+    prompt:
+      "a small planet in the universe full of sakura trees and petals covering the whole soil of the planet. fotorealistic picture.",
+    n_variants: 1,
+    width: 480,
+    height: 720,
+    n_frames: 1,
+    inpaint_items: []
+  }
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+        // Thêm 'Authorization' nếu API yêu cầu token:
+        // 'Authorization': 'Bearer YOUR_API_KEY'
+      },
+      body: JSON.stringify(payload)
+    })
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`)
+    }
+
+    const data = await response.json()
+    console.log("Image generation result:", data)
+    return data
+  } catch (error) {
+    console.error("Error during image generation:", error)
+  }
+}
+
 const DoQuyen = () => {
   const [data, setData] = useState<any>(null)
   // Replace this with your actual Bearer token value
