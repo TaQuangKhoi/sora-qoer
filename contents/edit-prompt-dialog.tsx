@@ -14,9 +14,7 @@ export const config: PlasmoCSConfig = {
 // }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = async () => ({
-  element: document.querySelector(
-    'div[role="dialog"].dialog-content button:last-of-type'
-  ),
+  element: document.querySelector("div.surface-composer + div"),
   insertPosition: "beforebegin"
 })
 
