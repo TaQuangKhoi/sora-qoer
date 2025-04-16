@@ -30,7 +30,8 @@
       "https://sora.com/*"
     ],
     "permissions": [
-      "activeTab"
+      "activeTab",
+      "scripting"
     ]
   }
 }

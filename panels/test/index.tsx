@@ -4,7 +4,7 @@ const FontPicker = () => {
     return (
         <>
             <h2>Font Picker</h2>
-            <p>HELLO WORLD</p>
+            <p>HELLO QUYEN</p>
         </>
     )
 }
