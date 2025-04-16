@@ -4,42 +4,47 @@ export const config: PlasmoCSConfig = {
   matches: ["https://sora.com/*"]
 }
 
-const initIconObserver = () => {
-  // Adjust the selector to match the notify icon’s identifying attribute/class.
-  const targetSelector = ".notify-icon"
-  const targetElement = document.querySelector(targetSelector)
+// content-script.js
 
-  if (!targetElement) {
-    console.warn("Notify icon not found. Retrying...")
-    // Optionally add a timeout or re-check logic if the element loads later.
+// Function to initialize the observer on the target notify button.
+const initNotifyButtonObserver = () => {
+  // Get all elements with class "surface-nav-element"
+  const buttons = document.querySelectorAll(".surface-nav-element")
+
+  // Check if at least 8 buttons exist
+  if (buttons.length < 8) {
+    console.warn(
+      "Less than 8 buttons found. The notify button may not be available yet."
+    )
     return
   }
 
-  // Create a new MutationObserver that will listen for attribute or child changes.
+  // Select the 8th button (index 7)
+  const notifyButton = buttons[7]
+  console.log("Notify button found:", notifyButton)
+
+  // Create a MutationObserver to monitor changes on this button.
   const observer = new MutationObserver((mutationsList) => {
     mutationsList.forEach((mutation) => {
-      // Check for attribute changes which may indicate a state update.
+      // Log attribute and child list changes for debugging.
       if (mutation.type === "attributes") {
-        console.log("Notification icon attribute changed:", mutation)
-        // Here, you can read the new attribute value or perform any other logic,
-        // such as sending a message to your background script to update the extension icon.
+        console.log("Notification button attribute changed:", mutation)
       }
-      // If the notification data is contained in text or child elements, check for child list changes.
       if (mutation.type === "childList") {
-        console.log("Notification icon children changed:", mutation)
+        console.log("Notification button child nodes changed:", mutation)
       }
     })
   })
 
-  // Specify what kinds of changes to observe
-  observer.observe(targetElement, {
-    attributes: true, // watch attribute changes
-    childList: true, // watch for added/removed nodes (if the icon text or sub-elements change)
-    subtree: false // set to true if you suspect nested elements might change
+  // Start observing the notify button for attribute and child list changes.
+  observer.observe(notifyButton, {
+    attributes: true, // Observe attribute changes (like data attributes or aria states)
+    childList: true, // Observe changes to the child elements (if any)
+    subtree: true // Include deeper nodes in case changes are nested
   })
 
-  console.log("Observer is initialized on notify icon.")
+  console.log("Observer is initialized on the notify button.")
 }
 
-// Wait until the DOM is sufficiently loaded (or use your timing from Plasmo's configuration).
-document.addEventListener("DOMContentLoaded", initIconObserver)
+// Wait until the DOM is sufficiently loaded
+document.addEventListener("DOMContentLoaded", initNotifyButtonObserver)
