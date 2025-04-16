@@ -23,6 +23,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      tailwindcss:
+        specifier: ^4.1.4
+        version: 4.1.4
     devDependencies:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.1.1
@@ -2952,6 +2955,9 @@ packages:
     resolution: {integrity: sha512-+N/Q9kV1+F+UeWYoSiULYo4xYSDQlTgb+ayMobAXPwMnLvop7oxKMo9OzIrX5x3eS4L4f2UHhc9axXwY8DpChg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+
+  tailwindcss@4.1.4:
+    resolution: {integrity: sha512-1ZIUqtPITFbv/DxRmDr5/agPqJwF69d24m9qmM1939TJehgY539CtzeZRjbLt5G6fSy/7YqqYsfvoTEw9xUI2A==}
 
   temp-dir@3.0.0:
     resolution: {integrity: sha512-nHc6S/bwIilKHNRgK/3jlhDoIHcp45YgyiwcAk46Tr0LfEqGBVpmiAyuiuxeVE44m3mXnEeVhaipLOEWmH+Njw==}
@@ -6312,6 +6318,8 @@ snapshots:
       csso: 4.2.0
       picocolors: 1.1.1
       stable: 0.1.8
+
+  tailwindcss@4.1.4: {}
 
   temp-dir@3.0.0: {}
 

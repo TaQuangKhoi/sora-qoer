@@ -14,7 +14,7 @@ export const config: PlasmoCSConfig = {
 // }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = async () => ({
-  element: document.querySelector("div.surface-composer + div"),
+  element: document.querySelector("div.surface-composer + div > div:nth-of-type(2) > div:nth-of-type(2)"),
   insertPosition: "beforebegin"
 })
 
