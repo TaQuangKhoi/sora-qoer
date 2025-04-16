@@ -1,6 +1,8 @@
 import type { PlasmoCSConfig, PlasmoGetOverlayAnchor } from "plasmo"
 import { useEffect, useState } from "react"
 
+import { TaskItem } from "~types"
+
 export const config: PlasmoCSConfig = {
   matches: ["https://sora.com/*"]
 }
@@ -8,8 +10,6 @@ export const config: PlasmoCSConfig = {
 export const getOverlayAnchor: PlasmoGetOverlayAnchor = async () => {
   return document.querySelector("h2")
 }
-
-
 
 const DoQuyen = () => {
   const [data, setData] = useState<any>(null)
@@ -20,7 +20,7 @@ const DoQuyen = () => {
     const fetchNotifications = async () => {
       console.log("Fetching notifications...")
       try {
-        const res = await fetch("https://sora.com/backend/notif?limit=10", {
+        const res = await fetch("https://sora.com/backend/notif?limit=2", {
           credentials: "include",
           headers: {
             authorization: `Bearer ${BEARER_TOKEN}`,
@@ -34,7 +34,23 @@ const DoQuyen = () => {
         if (!res.ok) throw new Error("API Error")
         const json = await res.json()
         setData(json)
-        console.log("Fetched:", json)
+        // const parsed = JSON.parse(json)
+        console.log("Parsed data:", json.data)
+        let tasks = json.data.map((item: any) => {
+          const task = new TaskItem(item)
+          console.log("Task ID:", task.payload.id)
+          console.log("Task Status:", task.payload.status)
+          console.log("Task Title:", task.payload.title)
+          console.log("Task Generations:", task.payload.generations)
+          return task
+        })
+        // const tasks = parsed.map((item) => new TaskItem(item))
+        // tasks.forEach((task) => {
+        //   console.log("Task ID:", task.payload.id)
+        //   console.log("Task Status:", task.payload.status)
+        //   console.log("Task Title:", task.payload.title)
+        //   console.log("Task Generations:", task.payload.generations)
+        // })
       } catch (err) {
         console.error("Fetch error:", err)
       }
