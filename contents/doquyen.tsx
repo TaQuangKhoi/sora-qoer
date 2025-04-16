@@ -19,7 +19,7 @@ const DoQuyen = () => (
       background: "black",
       padding: 4
     }}>
-    Đỗ Quyên
+    Love Đỗ Quyên
   </span>
 )
 

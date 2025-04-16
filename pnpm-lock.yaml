@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@plasmohq/selector':
+        specifier: 0.0.6
+        version: 0.0.6(react@18.2.0)
       plasmo:
         specifier: 0.90.3
         version: 0.90.3(@swc/core@1.11.21(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@types/node@20.11.5)(postcss@8.5.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1303,6 +1306,14 @@ packages:
   '@plasmohq/parcel-transformer-vue@0.5.0':
     resolution: {integrity: sha512-/3oVbajt+DRqtbM0RkKFtfyZR8DVjcsYpj1jHqPParGVBiXwgP0D/8Bj5p5/5Iqihs08gzasTcjKcwQKKdj0og==}
     engines: {parcel: '>= 2.7.0'}
+
+  '@plasmohq/selector@0.0.6':
+    resolution: {integrity: sha512-lSHCT0bvvwWCqjXuINUfMcX6s+s0y6oHBR1TMDhVIXvtFg2eSWNW2n+DN209NVHzGRTMqYsBd2Q42fRdFQyIbw==}
+    peerDependencies:
+      react: ^16.8.6 || ^17 || ^18 || ^19.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@pnpm/config.env-replace@1.1.0':
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
@@ -4660,6 +4671,10 @@ snapshots:
       - velocityjs
       - walrus
       - whiskers
+
+  '@plasmohq/selector@0.0.6(react@18.2.0)':
+    optionalDependencies:
+      react: 18.2.0
 
   '@pnpm/config.env-replace@1.1.0': {}
 
